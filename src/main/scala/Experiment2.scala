@@ -12,7 +12,7 @@ import org.deeplearning4j.text.tokenization.tokenizerfactory.{DefaultTokenizerFa
 
 
 object Experiment2 {
-  val appConf: Config = ConfigFactory.parseResources("application.conf")
+  val appConf: Config = ConfigFactory.parseResources("application.conf").resolve()
 
   val inputPath = appConf.getString("shardsDir")
   val outputPath = appConf.getString("tokenIdDir")
@@ -20,7 +20,9 @@ object Experiment2 {
   val numReducer = 2
   
   def main(args: Array[String]): Unit = {
-//    val obj = new TextTokenizerMR(inputPath, outputPath, numMapper, numReducer)
-//    obj.main()
+    val file = new File("/Users/mightymanh/Desktop/myCode/cs441/hw1/src/main/resources/output/embeddingVector/part-r-00000")
+    val csvFilePath = new File(file.getParent, "result.txt")
+    val success = file.renameTo(csvFilePath)
+    println(success)
   }
 }

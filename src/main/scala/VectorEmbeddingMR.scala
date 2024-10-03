@@ -28,7 +28,7 @@ import com.knuddels.jtokkit.Encodings
 object VectorEmbeddingMR {
   // logger & general
   val logger: Logger = LoggerFactory.getLogger(this.getClass)
-  val appConf: Config = ConfigFactory.parseResources("application.conf")
+  val appConf: Config = ConfigFactory.parseResources("application.conf").resolve()
 
   // encoding
   val registry: EncodingRegistry = Encodings.newDefaultEncodingRegistry()
@@ -112,14 +112,13 @@ object VectorEmbeddingMR {
         val tokenIdIntArrayList = new IntArrayList()
         tokenIdIntArrayList.add(tokenIdStr.toInt)
 
-        val realWord: String = enc.decode(tokenIdIntArrayList)
+        val realWord: String = enc.decode(tokenIdIntArrayList).trim()
 
         val freq = vocabCache.wordFrequency(tokenIdStr).toDouble
         val embeddingVector = embeddingModel.model.getWordVector(tokenIdStr)
         logger.debug(s"$realWord, freq: $freq, embedding vector: ${embeddingVector.mkString(" ")}")
         val bundleArr = Array.concat(Array(freq), embeddingVector)
         val obj = new DoubleArrayWritable(bundleArr)
-        println(obj.toString)
         context.write(new Text(realWord), obj)
       })
     }
@@ -131,17 +130,9 @@ object VectorEmbeddingMR {
 
       // deconstruct the object
       val bundleArr = values.asScala.toArray.map((obj: DoubleArrayWritable) => obj.getDoubleArray)
-      val vectorArr = bundleArr.map((arr: Array[Double]) => {
-        println("vector")
-        println(arr.tail.mkString("Array(", ", ", ")"))
-        arr.tail
-      })
+      val vectorArr = bundleArr.map((arr: Array[Double]) => arr.tail)
 
-      val freqArr = bundleArr.map((arr: Array[Double]) => {
-        println("freq")
-        println(arr.head)
-        arr.head
-      })
+      val freqArr = bundleArr.map((arr: Array[Double]) => arr.head)
 
       // average the vectors
       val numVectors = vectorArr.length
@@ -151,23 +142,15 @@ object VectorEmbeddingMR {
 
       // get frequency of given word
       val freq = freqArr.sum.toInt
-      println(numVectors)
       logger.info(s"${key.toString}, freq: $freq, embedding vector: ${averageVector.mkString(" ")}")
       context.write(new Text(key.toString), new Text(s"$freq,${averageVector.mkString(",")}"))
     }
   }
 
   def main(): Int = {
-
-    // if outputPath is there then delete it
-    val outputPathFile = new File(outputPath)
-    if (outputPathFile.exists()) {
-      FileUtils.deleteDirectory(outputPathFile)
-      logger.warn("embeddingVectorDir already exists! Deleted the directory")
-    }
     
     val jobConf: Configuration = new Configuration(true)
-    val jobName = "Vector Embedding"
+    val jobName = "Vector Embedding Map Reduce"
 
     // Job Configuration
     jobConf.set("fs.defaultFS", "file:///")

@@ -5,15 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="535a3e98-1548-4054-ad06-38c20c28c51e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/input/smallData/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sbt.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Experiment2.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Experiment2.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/IntegratedRun.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/IntegratedRun.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/SplitFile.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/SplitGroupFile.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/TextTokenizerMR.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/TextTokenizerMR.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/VectorEmbeddingMR.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/VectorEmbeddingMR.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +33,11 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="cs441-hw1" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="cs441-hw1" type="f1a62948:ProjectNode" />
+                <item name="sbt settings" type="ee584324:SbtViewContributor$SbtSettingsGroupNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
@@ -141,6 +145,7 @@
       <workItem from="1727671517332" duration="5803000" />
       <workItem from="1727702438387" duration="66671000" />
       <workItem from="1727888655907" duration="9680000" />
+      <workItem from="1727936967872" duration="12806000" />
     </task>
     <servers />
   </component>

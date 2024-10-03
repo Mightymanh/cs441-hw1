@@ -23,7 +23,7 @@ object TextTokenizerMR {
 
   // logger & general
   val logger: Logger = LoggerFactory.getLogger(this.getClass)
-  val appConf: Config = ConfigFactory.parseResources("application.conf")
+  val appConf: Config = ConfigFactory.parseResources("application.conf").resolve()
 
   // encoding
   val registry: EncodingRegistry = Encodings.newDefaultEncodingRegistry()
@@ -68,15 +68,8 @@ object TextTokenizerMR {
   @throws[Exception]
   def main(): Int = {
 
-    // if outputPath is there then delete it
-    val outputPathFile = new File(outputPath)
-    if (outputPathFile.exists()) {
-      FileUtils.deleteDirectory(outputPathFile)
-      logger.warn("tokenIdDir already exists! Deleted the directory")
-    }
-
     val jobConf: Configuration = new Configuration(true)
-    val jobName = "Tokenizer"
+    val jobName = "Tokenizer Map Reduce"
     
     // Job Configuration
     jobConf.set("fs.defaultFS", "file:///")
