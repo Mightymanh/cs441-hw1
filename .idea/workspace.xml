@@ -7,12 +7,29 @@
     <list default="true" id="535a3e98-1548-4054-ad06-38c20c28c51e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/Experiment2.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Experiment2.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/IntegratedRun.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/IntegratedRun.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/SplitFile.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/SplitGroupFile.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/TextTokenizerMR.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/TextTokenizerMR.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/VectorEmbeddingMR.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/VectorEmbeddingMR.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/output/shards/0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/output/shards/1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/output/shards/2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/output/tokenId/._SUCCESS.crc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/output/tokenId/.part-r-00000.crc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/output/tokenId/.part-r-00001.crc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/output/tokenId/_SUCCESS" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/output/tokenId/inputForEmbedding/part-r-00000" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/output/tokenId/inputForEmbedding/part-r-00001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/output/tokenId/part-r-00000" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/output/tokenId/part-r-00001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/ClosestWordsMR.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/main/ClosestWordsMR.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/CompositeKeyComparator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/main/CompositeKeyComparator.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/CompositeKeyPartitioner.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/main/CompositeKeyPartitioner.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/DoubleArrayWritable.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/main/DoubleArrayWritable.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Experiment.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/main/Experiment.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Experiment2.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/main/Experiment2.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/IntegratedRun.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/main/IntegratedRun.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/SplitGroupFile.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/main/SplitGroupFiles.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/TextInputFormatNoSplit.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/main/TextInputFormatNoSplit.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/TextTokenizerMR.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/main/TextTokenizerMR.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/VectorEmbeddingMR.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/main/VectorEmbeddingMR.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +90,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.IntegratedRun.executor&quot;: &quot;Run&quot;,
     &quot;Application.TextProcess.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
@@ -96,12 +114,26 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/scala/main" />
       <recent name="$PROJECT_DIR$/src/main/resources/output/" />
       <recent name="$PROJECT_DIR$/src/main/resources/input/smallData" />
       <recent name="$PROJECT_DIR$/src/main/scala/CustomCombineFileInputFormat" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.IntegratedRun">
+    <configuration name="IntegratedRun" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="main.IntegratedRun" />
+      <module name="cs441-hw1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TextProcess" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="TextProcess" />
       <module name="cs441-hw1" />
@@ -111,6 +143,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.IntegratedRun" />
         <item itemvalue="Application.TextProcess" />
       </list>
     </recent_temporary>
@@ -145,7 +178,8 @@
       <workItem from="1727671517332" duration="5803000" />
       <workItem from="1727702438387" duration="66671000" />
       <workItem from="1727888655907" duration="9680000" />
-      <workItem from="1727936967872" duration="12806000" />
+      <workItem from="1727936967872" duration="16937000" />
+      <workItem from="1727973356410" duration="5668000" />
     </task>
     <servers />
   </component>

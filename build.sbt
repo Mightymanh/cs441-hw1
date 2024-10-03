@@ -33,6 +33,8 @@ libraryDependencies += "org.deeplearning4j" % "deeplearning4j-nlp" % "1.0.0-M2.1
 // https://mvnrepository.com/artifact/org.nd4j/nd4j-native-platform
 libraryDependencies += "org.nd4j" % "nd4j-native-platform" % "1.0.0-M2.1"
 
+mainClass in assembly := Some("main.IntegratedRun")
+
 // META-INF discarding
 assemblyMergeStrategy in assembly := {
   case PathList("META-INF", xs @ _*) => MergeStrategy.discard
