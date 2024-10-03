@@ -73,7 +73,7 @@ object TextTokenizerMR {
     val jobName = "Tokenizer Map Reduce"
     
     // Job Configuration
-    jobConf.set("fs.defaultFS", "file:///")
+//    jobConf.set("fs.defaultFS", "file:///")
     jobConf.set("fs.hdfs.impl", classOf[org.apache.hadoop.hdfs.DistributedFileSystem].getName);
     jobConf.set("fs.file.impl", classOf[org.apache.hadoop.fs.LocalFileSystem].getName);
 
