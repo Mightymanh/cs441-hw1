@@ -1,5 +1,3 @@
-package main
-
 import org.apache.hadoop.io.{ArrayWritable, DoubleWritable}
 
 // Define the DoubleArrayWritable class

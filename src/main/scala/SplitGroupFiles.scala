@@ -1,22 +1,18 @@
-package main
-
-import com.typesafe.config.{Config, ConfigFactory}
-import org.apache.commons.io.FileUtils
 import org.slf4j.{Logger, LoggerFactory}
-
-import java.io.{File, FileWriter}
 import java.nio.charset.CodingErrorAction
 import scala.annotation.tailrec
 import scala.io.{Codec, Source}
+import org.apache.hadoop.fs.Path
+import java.io.{File, FileWriter}
 
 /*
-  Input: bigDataDir
-  Output: shardDir
+  Input: bigDataDir (local), numGroups (approximate, not exact)
+  Output: shardDir (local)
  */
-class SplitGroupFiles(dataDirPath: String, shardsDir: String, numMapper: Int) {
+object SplitGroupFiles {
   
   val logger: Logger = LoggerFactory.getLogger(this.getClass)
-  
+
   def getListOfFiles(dir: String): List[String] = {
     val file = new File(dir)
     file.listFiles.filter((file: File) => { // only allow .txt file, ignore other trash file like DS_Store
@@ -54,22 +50,24 @@ class SplitGroupFiles(dataDirPath: String, shardsDir: String, numMapper: Int) {
     logger.info("Finish merging")
   }
 
-  def splitToShards(fileList: List[File], limit: Long): Int = {
+  def splitToShards(fileList: List[File], shardsDir: String, limit: Long): Int = {
     @tailrec
     def _splitToShards(fileList: List[File], tempList: List[File], currentSize: Long, count: Int): Int = {
       if (fileList.isEmpty) { // if we finish processing list then merge all files in temp
         if (tempList.nonEmpty) {
           logger.debug(s"Last Shard: $count")
-          val newFile = new File(shardsDir + count.toString + ".txt")
+          val newFilePath = new Path(shardsDir, s"${count.toString}.txt").toString
+          val newFile = new File(newFilePath)
           mergeFiles(tempList, newFile)
           count + 1
         }
         else count
       }
-      else { // if we havent finish processing list
+      else { // if we haven't finish processing list
         if (currentSize > limit) { // if the temp list surpassed limit, merge them
           logger.debug(s"Shard $count: current size pass threshold")
-          val newFile = new File(shardsDir + count.toString + ".txt")
+          val newFilePath = new Path(shardsDir, s"${count.toString}.txt").toString
+          val newFile = new File(newFilePath)
           mergeFiles(tempList, newFile)
           _splitToShards(fileList, List(), 0, count + 1)
         }
@@ -78,7 +76,8 @@ class SplitGroupFiles(dataDirPath: String, shardsDir: String, numMapper: Int) {
           val currentFileSize = currentFile.length()
           if (currentFileSize > limit) { // if the current file surpass limit, export it
             logger.debug(s"Shard $count: this file is big: $currentFileSize vs limit:$limit")
-            val newFile = new File(shardsDir + count.toString + ".txt")
+            val newFilePath = new Path(shardsDir, s"${count.toString}.txt").toString
+            val newFile = new File(newFilePath)
             mergeFiles(List(currentFile), newFile)
             _splitToShards(fileList.tail, tempList, currentSize, count + 1)
           }
@@ -93,30 +92,37 @@ class SplitGroupFiles(dataDirPath: String, shardsDir: String, numMapper: Int) {
     _splitToShards(fileList, List(), 0, 0)
   }
 
-  def main(): Unit = {
-    val filePathList = getListOfFiles(dataDirPath)
-    val FileList = filePathList.map((filePath: String) => new File(filePath))
-    val shardLimitSize = FileList.map((file: File) => file.length()).sum / numMapper
-    logger.info(s"Processing ${filePathList.length} files with approximately $numMapper mappers, threshold of shard size is $shardLimitSize")
 
+  def splitJob(bigDataDir: String, shardsDir: String, numGroups: Int): Boolean = {
     // set up shards folder if it does not exist
     val shardsDirFile: File = new File(shardsDir)
     if (shardsDirFile.exists()) {
-      FileUtils.deleteDirectory(shardsDirFile)
-      logger.warn("Shards dir already exists! Deleted the directory")
+      logger.error("Shards dir already exists! Exit")
+      return false
     }
-    val successful = shardsDirFile.mkdirs()
-    if (successful) {
-      logger.info("Shards directory is created successfully")
-    }
-    else {
+    if (!shardsDirFile.mkdirs()) {
       logger.error("Shards directory failed to create")
-      System.exit(1)
+      return false
     }
+
+    // analyzing the size of big data
+    logger.info("Shards directory is created successfully")
+    val filePathList = getListOfFiles(bigDataDir)
+    val FileList = filePathList.map((filePath: String) => new File(filePath))
+    val shardLimitSize = FileList.map((file: File) => file.length()).sum / numGroups
+    logger.info(s"Processing ${filePathList.length} files with approximately $numGroups mappers, threshold of shard size is $shardLimitSize")
 
     // split big data into shards
     logger.info("Start splitting to Shards")
-    val numShards = splitToShards(FileList, shardLimitSize)
+    val numShards = splitToShards(FileList, shardsDir, shardLimitSize)
     logger.info(s"Finish splitting to $numShards Shards, output to $shardsDir")
+    true
+  }
+
+  def main(args: Array[String]): Unit = {
+    val bigDataDir = args(0)
+    val shardsDir = args(1)
+    val numGroups = args(2).toInt
+    splitJob(bigDataDir, shardsDir, numGroups)
   }
 }

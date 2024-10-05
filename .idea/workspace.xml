@@ -4,11 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="535a3e98-1548-4054-ad06-38c20c28c51e" name="Changes" comment="">
+    <list default="true" id="535a3e98-1548-4054-ad06-38c20c28c51e" name="Changes" comment="minor change">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/main/ClosestWordsMR.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/main/ClosestWordsMR.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/main/TextTokenizerMR.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/main/TextTokenizerMR.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/main/VectorEmbeddingMR.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/main/VectorEmbeddingMR.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/plugins.sbt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/input/input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/main/ClosestWordsMR.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ClosestWordsMR.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/main/CompositeKeyComparator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/CompositeKeyComparator.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/main/CompositeKeyPartitioner.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/CompositeKeyPartitioner.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/main/DoubleArrayWritable.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/DoubleArrayWritable.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/main/IntegratedRun.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/main/SplitGroupFiles.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/SplitGroupFiles.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/main/TextInputFormatNoSplit.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/TextInputFormatNoSplit.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/main/TextTokenizerMR.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/TextTokenizerMR.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/main/VectorEmbeddingMR.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/VectorEmbeddingMR.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,39 +77,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.IntegratedRun.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TextProcess.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/mightymanh/Desktop/myCode/cs441/hw1/src/main/resources/input/data&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.50229883&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.IntegratedRun.executor": "Run",
+    "Application.SplitByGroupFiles.executor": "Run",
+    "Application.SplitEmbeddingFile.executor": "Run",
+    "Application.TextProcess.executor": "Run",
+    "MUnit.Test.Sharding.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/mightymanh/Desktop/myCode/cs441/hw1/src/test/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.50229883",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test/resources" />
+      <recent name="$PROJECT_DIR$/src/main/resources/testInput/tokenizingTest" />
       <recent name="$PROJECT_DIR$/src/main/resources/input/data" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/scala/main" />
-      <recent name="$PROJECT_DIR$/src/main/resources/output/" />
-      <recent name="$PROJECT_DIR$/src/main/resources/input/smallData" />
-      <recent name="$PROJECT_DIR$/src/main/scala/CustomCombineFileInputFormat" />
+      <recent name="$PROJECT_DIR$/src/test/resources" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/resources/input/testData/" />
+      <recent name="$PROJECT_DIR$/src/main/resources/input/testData/shardingTest" />
+      <recent name="$PROJECT_DIR$/src/main/scala" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.IntegratedRun">
+  <component name="RunManager" selected="Application.SplitEmbeddingFile">
     <configuration name="IntegratedRun" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="main.IntegratedRun" />
       <module name="cs441-hw1" />
@@ -113,17 +129,61 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TextProcess" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="TextProcess" />
+    <configuration name="SplitByGroupFiles" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="SplitGroupFiles" />
+      <module name="cs441-hw1" />
+      <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/src/main/resources/input/smallData $PROJECT_DIR$/src/main/resources/output/shards1 3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SplitEmbeddingFile" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="SplitEmbeddingFile" />
       <module name="cs441-hw1" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Test.Sharding" type="MUnitRunConfiguration" factoryName="MUnit" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <module name="cs441-hw1" />
+      <option name="VMParameters" value="" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="alternativeJrePath" />
+      <option name="alternativeJrePathEnabled" value="false" />
+      <option name="classpathModifications">
+        <list />
+      </option>
+      <option name="envs">
+        <map />
+      </option>
+      <option name="passParentEnvs" value="true" />
+      <option name="programParameters" value="" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="testKind" value="Test name" />
+      <option name="workingDirectory" value="$PROJECT_DIR$" />
+      <option name="shortenClasspath" value="NONE" />
+      <option name="testClassPath" value="Test" />
+      <option name="testName" value="Sharding" />
+      <option name="workingDirectory" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.SplitEmbeddingFile" />
+      <item itemvalue="Application.IntegratedRun" />
+      <item itemvalue="Application.SplitByGroupFiles" />
+      <item itemvalue="MUnit.Test.Sharding" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SplitEmbeddingFile" />
+        <item itemvalue="Application.SplitByGroupFiles" />
+        <item itemvalue="MUnit.Test.Sharding" />
         <item itemvalue="Application.IntegratedRun" />
-        <item itemvalue="Application.TextProcess" />
       </list>
     </recent_temporary>
   </component>
@@ -161,6 +221,7 @@
       <workItem from="1727973356410" duration="7204000" />
       <workItem from="1727986495914" duration="511000" />
       <workItem from="1727993271298" duration="609000" />
+      <workItem from="1728121380752" duration="7350000" />
     </task>
     <servers />
   </component>

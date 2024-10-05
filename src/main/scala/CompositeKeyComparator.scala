@@ -1,5 +1,3 @@
-package main
-
 import org.apache.hadoop.io.{Text, WritableComparable, WritableComparator}
 
 class CompositeKeyComparator extends WritableComparator(classOf[Text], true) {
@@ -19,7 +17,7 @@ class CompositeKeyComparator extends WritableComparator(classOf[Text], true) {
 //    println(s"$file1 $lineOff1")
 //    println(s"$file2 $lineOff2")
 //    println("Done Comparator")
-    if (file1 == file2) then lineOff1.compareTo(lineOff2)
+    if (file1 == file2) lineOff1.compareTo(lineOff2)
     else file1.compareTo(file2)
   }
 }
