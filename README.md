@@ -3,7 +3,7 @@ Author: Manh Phan
 
 Email: dphan8@uic.edu
 
-Youtube demo Deploying app in AWS: 
+Youtube demo Deploying app in AWS: [https://youtu.be/nuc21GZ0uSU](https://youtu.be/nuc21GZ0uSU)
 
 # Instruction on running this homework
 
