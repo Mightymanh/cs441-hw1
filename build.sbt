@@ -15,6 +15,10 @@ libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.13"
 // https://mvnrepository.com/artifact/com.typesafe/config
 libraryDependencies += "com.typesafe" % "config" % "1.4.3"
 
+//// https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-bundle
+//libraryDependencies += "com.amazonaws" % "aws-java-sdk-bundle" % "1.12.262"
+
+
 // https://mvnrepository.com/artifact/com.knuddels/jtokkit
 libraryDependencies += "com.knuddels" % "jtokkit" % "1.0.0"
 

@@ -27,38 +27,18 @@ object VectorEmbeddingMR {
   val enc: Encoding = registry.getEncoding(EncodingType.CL100K_BASE)
 
   // Word2Vec hyper-parameters
-  val minWordFrequency: Int = appConf.getInt("minWordFrequency")
   val seed: Int = appConf.getInt("seed")
   val numIterations: Int = appConf.getInt("numIterations")
   val numEpochs: Int = appConf.getInt("numEpochs")
-  val embeddingVectorSize: Int = appConf.getInt("embeddingVectorSize")
   val windowSize: Int = appConf.getInt("windowSize")
-
-  // for each file starting with part-r, create a new file with the same name in txt, and inside contains the actual path
-  // NOT WORK
-  def setUp(inputPath: String): String = {
-    // get all files that start with "part-r-"
-    val dir = new File(inputPath)
-    val fileList = dir.listFiles.filter((file: File) => { // only allow "part-r-..." file, ignore other trash file like DS_Store
-      if (!file.isFile) false
-      else {
-        val name = file.getName
-        if (name.length > 7 && name.substring(0, 7) == "part-r-") true
-        else false
-      }
-    })
-    logger.info(s"Getting ${fileList.length} tokenId files: ${fileList.map(_.getName).mkString("Array(", ", ", ")")}")
-
-    // create a new folder inside tokenId that will store all files with content filepath
-
-    // populate files in that job dir
-    logger.info("Finish creating temporary files in the inputForEmbedding folder. These files are input to Vector Embedding Map Reduce.")
-    inputPath
-  }
 
   // Mapper: word, embedding is an array of double
   class EmbeddingMapper extends Mapper[LongWritable, Text, Text, DoubleArrayWritable] {
     override def map(key: LongWritable, value: Text, context: Mapper[LongWritable, Text, Text, DoubleArrayWritable]#Context): Unit = {
+      val conf = context.getConfiguration
+      val embeddingVectorSize = conf.get("embeddingVectorSize").toInt
+      val minWordFrequency = conf.get("minWordFrequency").toInt
+
       // initialize model, input & output
       val inputPath = value.toString
       logger.info(s"Initialize Word Embedding Model. Input data: $inputPath")
@@ -114,9 +94,11 @@ object VectorEmbeddingMR {
     }
   }
 
-  def submitJob(inputPath: String, outputPath: String): Boolean = {
+  def submitJob(inputPath: String, outputPath: String, embeddingVectorSize: Int, minWordFrequency: Int): Boolean = {
     val jobConf: Configuration = new Configuration(true)
     val jobName = "Vector Embedding Map Reduce"
+    jobConf.set("embeddingVectorSize", embeddingVectorSize.toString)
+    jobConf.set("minWordFrequency", minWordFrequency.toString)
 
     // Job Configuration
     //    jobConf.set("fs.defaultFS", "file:///")
@@ -165,6 +147,8 @@ object VectorEmbeddingMR {
   def main(args: Array[String]): Unit = {
     val inputPath = args(0)
     val outputPath = args(1)
-    submitJob(inputPath, outputPath)
+    val embeddingVectorSize = if (args.length >= 3) args(2).toInt else 100
+    val minWordFrequency = if (args.length >= 4) args(3).toInt else 2
+    submitJob(inputPath, outputPath, embeddingVectorSize, minWordFrequency)
   }
 }

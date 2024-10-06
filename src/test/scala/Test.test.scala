@@ -43,6 +43,7 @@ class Test extends munit.FunSuite {
   val registry: EncodingRegistry = Encodings.newDefaultEncodingRegistry()
   val enc: Encoding = registry.getEncoding(EncodingType.CL100K_BASE)
 
+  // test if sharding algorithm is as expect: split the files into relatively equal size groups
   test("Sharding") {
     val inputPath = "src/test/resources/testInput/shardingTest"
     val outputPath = "src/test/resources/testOutput/shards"
@@ -57,9 +58,9 @@ class Test extends munit.FunSuite {
     val expectedNumGroups = 1
     val actualNumGroups = new File(outputPath).listFiles.length
     assertEquals(expectedNumGroups, actualNumGroups, "Incorrect number of shards")
-
   }
 
+  // check accuracy of tokenizing map reduce: the output is the encoded version of input
   test("Tokenizing") {
     cleanUp()
 
@@ -84,6 +85,7 @@ class Test extends munit.FunSuite {
     assertEquals((actualContent == expectedContent2) || (actualContent == expectedContent1), true, "Tokenize wrong, incorrect order of words")
   }
 
+  // test cosine between two vectors
   test("cosine") {
     val v1 = Array(0.5, 0.2, 0.3)
     val v2 = Array(0.3, 0.4, 0.1)
@@ -92,6 +94,7 @@ class Test extends munit.FunSuite {
     assertEquals(Math.abs(expectedResult - actualResult) < 0.001, true, "cosine between two vectors is wrong")
   }
 
+  // test cosine similarity
   test("closestWord") {
     val embeddingCsv = "src/test/resources/testInput/closestWordTest/embedding.csv"
     val word = "girl"
@@ -99,6 +102,7 @@ class Test extends munit.FunSuite {
     assertEquals(ClosestWordsMR.findClosestWord(word, vector, embeddingCsv), "woman", "closest word is wrong")
   }
 
+  // test cosine similarity and special case where there are only two words in the csv file
   test("closestWord2") {
     val embeddingCsv = "src/test/resources/testInput/closestWordTest/embedding.csv"
     val word = "boy"

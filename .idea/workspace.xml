@@ -5,20 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="535a3e98-1548-4054-ad06-38c20c28c51e" name="Changes" comment="minor change">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/plugins.sbt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/input/input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/main/ClosestWordsMR.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ClosestWordsMR.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/main/CompositeKeyComparator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/CompositeKeyComparator.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/main/CompositeKeyPartitioner.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/CompositeKeyPartitioner.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/main/DoubleArrayWritable.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/DoubleArrayWritable.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/main/IntegratedRun.scala" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/main/SplitGroupFiles.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/SplitGroupFiles.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/main/TextInputFormatNoSplit.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/TextInputFormatNoSplit.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/main/TextTokenizerMR.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/TextTokenizerMR.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/main/VectorEmbeddingMR.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/VectorEmbeddingMR.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/ClosestWordsMR.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/ClosestWordsMR.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/IntegratedRun.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/IntegratedRun.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/VectorEmbeddingMR.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/VectorEmbeddingMR.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/VectorEmbeddingModel.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/VectorEmbeddingModel.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -221,7 +212,7 @@
       <workItem from="1727973356410" duration="7204000" />
       <workItem from="1727986495914" duration="511000" />
       <workItem from="1727993271298" duration="609000" />
-      <workItem from="1728121380752" duration="7350000" />
+      <workItem from="1728121380752" duration="22450000" />
     </task>
     <servers />
   </component>

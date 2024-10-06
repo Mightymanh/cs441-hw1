@@ -20,7 +20,7 @@ class VectorEmbeddingModel(inputFilePath: String, embeddingVectorSize: Int, minW
   // model configuration
   val conf = new Configuration()
   logger.info(s"fs: ${conf.get("fs.defaultFS")}, input: $inputFilePath")
-  val fs: FileSystem = FileSystem.get(conf)
+  val fs: FileSystem = new Path(inputFilePath).getFileSystem(conf)
 
   val sentences: util.Collection[String] = readFile(inputFilePath)
   val iter: SentenceIterator = new CollectionSentenceIterator(sentences)

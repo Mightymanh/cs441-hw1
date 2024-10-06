@@ -9,10 +9,13 @@ object IntegratedRun {
   val logger: Logger = LoggerFactory.getLogger(this.getClass)
   val appConf: Config = ConfigFactory.load().resolve()
 
+  // prepare input for vector embedding map reduce: for each output file from tokenize MR, export a file that has similar name and content is
+  // the absolute path of the output file
   def prepareEmbeddingInput(tokenIdDir: String, inputEmbeddingDir: String): Unit = {
     val conf = new Configuration()
-    val fs: FileSystem = FileSystem.get(conf)
-    val fileStatuses = fs.listStatus(new Path(tokenIdDir))
+    val path = new Path(tokenIdDir)
+    val fs: FileSystem = path.getFileSystem(conf)
+    val fileStatuses = fs.listStatus(path)
     val wantedFiles = fileStatuses.map(status => status.getPath).filter((path) => {
       val name = path.getName
       if (name.length > 7 && name.substring(0, 7) == "part-r-") true
@@ -28,20 +31,22 @@ object IntegratedRun {
     fs.close()
   }
 
+  // check if the output directory exist
   def checkDirExist(outputPath: String): Boolean = {
     val conf = new Configuration()
-    val fs: FileSystem = FileSystem.get(conf)
     val outputDirFile = new Path(outputPath)
+    val fs = outputDirFile.getFileSystem(conf)
     val exist = fs.exists(outputDirFile)
     fs.close()
     exist
   }
 
+  // convert output of embedding map reduce from "part-r-00000" to name in csv extension
   def createEmbeddingCsv(embeddingVectorDir: String, embeddingCsv: String): Boolean = {
     val conf = new Configuration()
-    val fs: FileSystem = FileSystem.get(conf)
     val fromPath = new Path(embeddingVectorDir, "part-r-00000")
     val destPath = new Path(embeddingCsv)
+    val fs = fromPath.getFileSystem(conf)
     val success = fs.rename(fromPath, destPath)
     fs.close()
     success
@@ -50,11 +55,18 @@ object IntegratedRun {
   def main(args: Array[String]): Unit = {
     val inputPath = args(0)
     val outputPath = args(1)
+    val numTokenReducer = if (args.length >= 3) args(2).toInt else 2
+    val embeddingVectorSize = if (args.length >= 4) args(3).toInt else 100
+    val minWordFrequency = if (args.length >= 5) args(4).toInt else 2
+    logger.info(s"shard folders: $inputPath -> output folder: $outputPath")
+    logger.info(s"numTokenReducer: $numTokenReducer, embeddingVectorSize: $embeddingVectorSize, minWordFreq: $minWordFrequency")
 
-    if (checkDirExist(outputPath)) {
-      logger.error(s"Output directory already exists: $outputPath")
-      return
-    }
+//    if (checkDirExist(outputPath)) {
+//      logger.error(s"Output directory already exists: $outputPath")
+//      return
+//    }
+    val conf = new Configuration()
+    logger.info(conf.get("fs.defaultFS"))
 
     // preparing directories
     val tokenIdDir = new Path(outputPath, appConf.getString("tokenIdDir")).toString
@@ -64,8 +76,8 @@ object IntegratedRun {
     val closestWordDir = new Path(outputPath, appConf.getString("closestWordDir")).toString
 
     // Tokenize
-    logger.info("Start Map Reduce tokenize")
-    val tokenizeStatus = TextTokenizerMR.submitJob(inputPath, tokenIdDir, 2)
+    logger.info(s"Start Map Reduce tokenize: $numTokenReducer")
+    val tokenizeStatus = TextTokenizerMR.submitJob(inputPath, tokenIdDir, numTokenReducer)
     if (!tokenizeStatus) {
       logger.error("Tokenizing text failed")
       return
@@ -76,8 +88,8 @@ object IntegratedRun {
     prepareEmbeddingInput(tokenIdDir, inputEmbeddingDir)
 
     // Embedding
-    logger.info("Start Map Reduce Vector embedding")
-    val embeddingStatus = VectorEmbeddingMR.submitJob(inputEmbeddingDir, embeddingVectorDir)
+    logger.info(s"Start Map Reduce Vector embedding: vector size: $embeddingVectorSize, min word freq: $minWordFrequency")
+    val embeddingStatus = VectorEmbeddingMR.submitJob(inputEmbeddingDir, embeddingVectorDir, embeddingVectorSize, minWordFrequency)
     if (!embeddingStatus) {
       logger.error("Vector embedding failed")
       return

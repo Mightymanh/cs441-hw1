@@ -43,12 +43,13 @@ object ClosestWordsMR {
   def findClosestWord(currWord: String, currVector: Array[Double], csvFilePath: String): String = {
     val conf = new Configuration()
 
-    val fs: FileSystem = FileSystem.get(conf)
     val path = new Path(csvFilePath)
+    val fs = path.getFileSystem(conf)
     val inputStream: FSDataInputStream = fs.open(path)
     val buffer = new BufferedReader(new InputStreamReader(inputStream))
 
-    // find the closest word
+    // find the closest word. I have to use var because it works well with buffer, expecially if the csv file is hugh with 35000 words and
+    // if we use map, we have to store 35000 embedding vectors in memory which is costly
     var closestWord: String = ""
     var highestCos: Double = 0
     buffer.lines().forEach(line => {
