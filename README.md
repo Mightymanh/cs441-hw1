@@ -14,7 +14,7 @@ To run this project: At the root of this project run this command:
 
 Compile project: `sbt compile`
 
-## The main class file** for this project is IntegratedRun.scala. 
+## The main class file for this project is IntegratedRun.scala. 
 **IntegratedRun** has the following in order jobs:
 - TextTokenizer Map Reduce: shards of text files -> tokenID version
 - VectorEmbedding Map Reduce: tokenId -> vector embedding file
@@ -31,7 +31,7 @@ So run: `sbt run <inputPath> <outputPath> <numReducer (optional)> <embeddingVect
 
 then when IDEA or terminal ask which program you want to run, choose IntegratedRun.
 
-## To split a big dataset** into shards, run the **SplitGroupFiles.scala**: 
+## To split a big dataset into shards, run the **SplitGroupFiles.scala**: 
 `sbt run <inputBigDataDir> <shardsDir> <numGroups>`
 - inputBigDataDir: path to your big data directory
 - shardsDir: path to directory where you will store your shards
@@ -39,8 +39,9 @@ then when IDEA or terminal ask which program you want to run, choose IntegratedR
 
 ## Additional commands
 `sbt clean`: clean project
+
 `sbt test`: run test. There are 5 tests in the **src/test/** directory
 
 ## About dataset to train word2vec
-When processing big dataset, the design of dataset is very important. Some people put all text into single file and break it into sub-files. My dataset is a directory where it contains lots of text file where each text file is a book. The dataset is from [https://www.gutenberg.org/](https://www.gutenberg.org/)
+When processing a big dataset, the design of the dataset is very important. Some people put all text into a single file. My dataset is a directory containing lots of text files and each text file is a book. The dataset is from [https://www.gutenberg.org/](https://www.gutenberg.org/)
 
