@@ -1,4 +1,4 @@
-# CS 441 Fall 2024 - homework 1
+# CS 441 Fall 2024 - homework 1 - Vector Embedding
 Author: Manh Phan
 
 Email: dphan8@uic.edu
